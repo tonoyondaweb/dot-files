@@ -1,6 +1,6 @@
 # flow
 
-flow is a fast, high-rigor coding harness for Cursor. It turns plain English requests into small verified PRs, designs before it writes, and never ships on "it compiles".
+flow is a platform-agnostic, fast, high-rigor coding harness for AI agents and coding assistants. It turns plain English requests into small verified PRs, designs before it writes, and never ships on "it compiles".
 
 ## Directory Structure
 
@@ -17,7 +17,7 @@ flow/
 
 ## How It Works
 
-1. You give Cursor a task with `/flow`.
+1. You give your agent or coding assistant a task with `/flow`.
 2. flow matches the task to a playbook (Feature, Bug fix, Perf issue, Prototype, etc.).
 3. flow plans the change, invokes workflow skills (such as `architect` or `interrogate`), writes tests first (`tdd`), executes in an isolated worktree, and collects runtime evidence before opening a PR.
 
@@ -45,5 +45,5 @@ The [scripts](skills/flow/scripts) directory contains CLI utilities:
 
 flow builds upon and adapts concepts from two primary foundations:
 
-• **[pstack](https://github.com/pstack-ai/pstack)**: The primary foundation and architecture for flow. pstack introduced the high-rigor autonomous execution paradigm, the playbook system, multi-model panels, verification harnesses, worktree isolation, and the core software design principles.
-• **[Matt Pocock's Skills Library](https://github.com/mattpocock/skills)**: The foundation for conversational ideation and structured specification. These include the interactive architectural decision workflows ([`wayfinder`](skills/wayfinder/SKILL.md), [`grill-me`](skills/grill-me/SKILL.md), [`to-spec`](skills/to-spec/SKILL.md), [`to-questionnaire`](skills/to-questionnaire/SKILL.md)), conversational triage and curriculum learning ([`triage`](skills/triage/SKILL.md), [`learn`](skills/learn/SKILL.md)), and agent instruction standards ([`writing-for-agents`](skills/writing-for-agents/SKILL.md)).
+• **[pstack (`cursor/plugins/pstack`)](https://github.com/cursor/plugins/tree/main/pstack)**: The primary foundation and architecture for flow. pstack introduced the high-rigor autonomous execution paradigm, the playbook system, multi-model panels, verification harnesses, worktree isolation, and the core software design principles.
+• **[Matt Pocock's Skills Library (`mattpocock/skills`)](https://github.com/mattpocock/skills)**: The foundation for conversational ideation and structured specification. These include the interactive architectural decision workflows ([`wayfinder`](skills/wayfinder/SKILL.md), [`grill-me`](skills/grill-me/SKILL.md), [`to-spec`](skills/to-spec/SKILL.md), [`to-questionnaire`](skills/to-questionnaire/SKILL.md)), conversational triage and curriculum learning ([`triage`](skills/triage/SKILL.md), [`learn`](skills/learn/SKILL.md)), and agent instruction standards ([`writing-for-agents`](skills/writing-for-agents/SKILL.md)).
