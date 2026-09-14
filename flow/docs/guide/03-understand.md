@@ -1,6 +1,6 @@
 # Understand the code before changing it
 
-Editing code you don't understand is how subtle regressions ship. flow gives you four ways in. `/how` explains what the code does now. `/why` digs up the reasons it's shaped that way. `/teach` blends both into one explanation. `/recall` rebuilds your own recent context on a topic.
+Editing code you don't understand is how subtle regressions ship. flow gives you four ways in. `/how` explains what the code does now. `/why` digs up the reasons it's shaped that way. `/understand` blends both into one explanation. `/recall` rebuilds your own recent context on a topic.
 
 ![A detective studies a machine blueprint with a magnifying glass while robots fetch case files; the evidence board behind her links clues under /how and /why.](./images/understanding.jpg)
 
@@ -22,13 +22,13 @@ Ask the question you actually have. [`/how`](../../skills/how/SKILL.md) reads th
 
 The two compose naturally. `do why first then how` is a perfectly good prompt when you suspect the history explains the mess.
 
-## Actually understand it with `/teach`
+## Actually understand it with `/understand`
 
 ```text
-/teach me how this PR changes retries. convince me it fixes the cause and not the symptom.
+/understand how this PR changes retries. convince me it fixes the cause and not the symptom.
 ```
 
-[`/teach`](../../skills/teach/SKILL.md) is for when a summary isn't enough. It runs `/how` and `/why`, for a small change maybe just one of them, and weaves the findings into a plain explanation that builds up diagram by diagram. The "convince me" framing is worth stealing. It turns the explanation into an argument you can poke at instead of a tour.
+[`/understand`](../../skills/understand/SKILL.md) is for when a summary isn't enough. It runs `/how` and `/why`, for a small change maybe just one of them, and weaves the findings into a plain explanation that builds up diagram by diagram. The "convince me" framing is worth stealing. It turns the explanation into an argument you can poke at instead of a tour.
 
 ## Rebuild your own context with `/recall`
 
@@ -43,11 +43,7 @@ The two compose naturally. `do why first then how` is a perfectly good prompt wh
 When another agent (or you, last week) left a branch mid-flight:
 
 ```text
-/flow take over this branch. read the decision log, figure out what's done, and continue from there. don't redo finished work.
+/flow pick up branch tonoy/fix-auth-tokens
 ```
 
-The [Session pickup playbook](../../skills/flow/playbooks/session-pickup.md) treats the prior trail as authoritative. It reconstructs the branch state and decisions, names the resume point, and verifies inherited claims against the original goal instead of re-deriving everything from scratch.
-
-**Pitfall:** don't skip this page's skills because "the agent will read the code anyway." An agent that starts editing without a traced model tends to fix the symptom at the first plausible spot. `/how` first is cheaper than the second bug.
-
-Next: [Design the change](./04-design.md).
+Match it to the Session pickup playbook (`playbooks/session-pickup.md`). It audits the diff against main, reads git log, runs the test suite to verify current state, reconstructs the plan, and resumes execution without re-doing completed work.

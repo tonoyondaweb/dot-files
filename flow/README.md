@@ -1,55 +1,49 @@
-# Flow Framework
+# flow
 
-This directory contains the Flow framework for autonomous AI coding agents.
+flow is a fast, high-rigor coding harness for Cursor. It turns plain English requests into small verified PRs, designs before it writes, and never ships on "it compiles".
 
-Flow gives agents structured playbooks, modular skills, and engineering principles.
-
-## Structure
+## Directory Structure
 
 ```
 flow/
-├── agents/    # Agent personality and configuration files
-├── docs/      # Guides and instructional documents
-└── skills/    # Reusable skill folders, playbooks, and scripts
+├── agents/         # Subagent definitions (e.g. flow-agent, comment-sicko)
+├── docs/           # Documentation and guides
+│   └── guide/      # 10-chapter guide to flow mode and playbooks
+├── skills/         # Modular skills, playbooks, and principles
+│   ├── flow/       # Core flow orchestrator, playbooks, and references
+│   └── ...         # 55+ specialized skills and principle definitions
+└── tests/          # Tests for flow harness utilities
 ```
 
-## Agents
+## How It Works
 
-The [agents](file:///Users/tonoy/workspace/dot-files/flow/agents) directory defines agent roles:
+1. You give Cursor a task with `/flow`.
+2. flow matches the task to a playbook (Feature, Bug fix, Perf issue, Prototype, etc.).
+3. flow plans the change, invokes workflow skills (such as `architect` or `interrogate`), writes tests first (`tdd`), executes in an isolated worktree, and collects runtime evidence before opening a PR.
 
-• [flow-agent.md](file:///Users/tonoy/workspace/dot-files/flow/agents/flow-agent.md): Main Flow subagent. It routes tasks through playbooks and follows strict verification standards.
-• [comment-sicko.md](file:///Users/tonoy/workspace/dot-files/flow/agents/comment-sicko.md): Specialized reviewer that deletes unnecessary code comments.
+## Key Skills
 
-## Documentation
+The [skills](skills) directory contains modular instructions:
 
-The [docs/guide](file:///Users/tonoy/workspace/dot-files/flow/docs/guide) directory contains a complete guide for the framework:
-
-• [README.md](file:///Users/tonoy/workspace/dot-files/flow/docs/guide/README.md): Overview and table of contents.
-• [01-setup.md](file:///Users/tonoy/workspace/dot-files/flow/docs/guide/01-setup.md): Installation and model selection.
-• [02-flow.md](file:///Users/tonoy/workspace/dot-files/flow/docs/guide/02-flow.md): Task routing and goal specification.
-• [03-understand.md](file:///Users/tonoy/workspace/dot-files/flow/docs/guide/03-understand.md): Investigation before editing code.
-• [04-design.md](file:///Users/tonoy/workspace/dot-files/flow/docs/guide/04-design.md): Architecture exploration and multi-model reviews.
-• [05-build-and-clean.md](file:///Users/tonoy/workspace/dot-files/flow/docs/guide/05-build-and-clean.md): Test-driven development and code cleanup.
-• [06-verify-and-ship.md](file:///Users/tonoy/workspace/dot-files/flow/docs/guide/06-verify-and-ship.md): Real application verification and pull requests.
-• [07-overnight.md](file:///Users/tonoy/workspace/dot-files/flow/docs/guide/07-overnight.md): Long autonomous sessions and decision logs.
-• [08-principles.md](file:///Users/tonoy/workspace/dot-files/flow/docs/guide/08-principles.md): Principle names to guide agents.
-• [09-make-it-yours.md](file:///Users/tonoy/workspace/dot-files/flow/docs/guide/09-make-it-yours.md): Customization and skill testing.
-• [10-recipes-and-pitfalls.md](file:///Users/tonoy/workspace/dot-files/flow/docs/guide/10-recipes-and-pitfalls.md): Prompt examples and common errors.
-
-## Skills
-
-The [skills](file:///Users/tonoy/workspace/dot-files/flow/skills) directory contains modular instructions:
-
-• [flow](file:///Users/tonoy/workspace/dot-files/flow/skills/flow/SKILL.md): Central engine that routes requests to playbooks.
-• **Workflow Skills**: [tdd](file:///Users/tonoy/workspace/dot-files/flow/skills/tdd/SKILL.md), [architect](file:///Users/tonoy/workspace/dot-files/flow/skills/architect/SKILL.md), [interrogate](file:///Users/tonoy/workspace/dot-files/flow/skills/interrogate/SKILL.md), [arena](file:///Users/tonoy/workspace/dot-files/flow/skills/arena/SKILL.md), [swarm](file:///Users/tonoy/workspace/dot-files/flow/skills/swarm/SKILL.md), and [unslop](file:///Users/tonoy/workspace/dot-files/flow/skills/unslop/SKILL.md).
-• **Investigation Skills**: [how](file:///Users/tonoy/workspace/dot-files/flow/skills/how/SKILL.md), [why](file:///Users/tonoy/workspace/dot-files/flow/skills/why/SKILL.md), [teach](file:///Users/tonoy/workspace/dot-files/flow/skills/teach/SKILL.md), and [recall](file:///Users/tonoy/workspace/dot-files/flow/skills/recall/SKILL.md).
-• **Verification Skills**: [create-verification-skill](file:///Users/tonoy/workspace/dot-files/flow/skills/create-verification-skill/SKILL.md) and [maintain-verification-skill](file:///Users/tonoy/workspace/dot-files/flow/skills/maintain-verification-skill/SKILL.md).
-• **23 Principles**: Leaf skills with naming prefix `principle-*` (for example, [principle-fix-root-causes](file:///Users/tonoy/workspace/dot-files/flow/skills/principle-fix-root-causes/SKILL.md) and [principle-prove-it-works](file:///Users/tonoy/workspace/dot-files/flow/skills/principle-prove-it-works/SKILL.md)).
+• [flow](skills/flow/SKILL.md): Central engine that routes requests to playbooks.
+• **Planning & Architecture Skills**: [wayfinder](skills/wayfinder/SKILL.md), [grill-me](skills/grill-me/SKILL.md), [to-spec](skills/to-spec/SKILL.md), and [to-questionnaire](skills/to-questionnaire/SKILL.md).
+• **Workflow Skills**: [tdd](skills/tdd/SKILL.md), [architect](skills/architect/SKILL.md), [interrogate](skills/interrogate/SKILL.md), [arena](skills/arena/SKILL.md), [swarm](skills/swarm/SKILL.md), and [unslop](skills/unslop/SKILL.md).
+• **Investigation & Learning Skills**: [how](skills/how/SKILL.md), [why](skills/why/SKILL.md), [understand](skills/understand/SKILL.md), [learn](skills/learn/SKILL.md), [recall](skills/recall/SKILL.md), and [wait-what](skills/wait-what/SKILL.md).
+• **Operations & Governance Skills**: [triage](skills/triage/SKILL.md), [writing-for-agents](skills/writing-for-agents/SKILL.md), [wizard](skills/wizard/SKILL.md), and [no-comments](skills/no-comments/SKILL.md).
+• **Verification Skills**: [create-verification-skill](skills/create-verification-skill/SKILL.md) and [maintain-verification-skill](skills/maintain-verification-skill/SKILL.md).
+• **23 Principles**: Leaf skills with naming prefix `principle-*` (for example, [principle-fix-root-causes](skills/principle-fix-root-causes/SKILL.md) and [principle-prove-it-works](skills/principle-prove-it-works/SKILL.md)).
 
 ## Scripts
 
-The [scripts](file:///Users/tonoy/workspace/dot-files/flow/skills/flow/scripts) directory contains CLI utilities:
+The [scripts](skills/flow/scripts) directory contains CLI utilities:
 
 • `watch-pr`: CLI tool to monitor pull requests and triage review feedback.
 • `orch`: Orchestration runner and state store.
 • `worktree-audit.sh`: Script to inspect and clean git worktrees.
+
+## Acknowledgements
+
+flow builds upon and adapts concepts from two primary foundations:
+
+• **[pstack](https://github.com/pstack-ai/pstack)**: The primary foundation and architecture for flow. pstack introduced the high-rigor autonomous execution paradigm, the playbook system, multi-model panels, verification harnesses, worktree isolation, and the core software design principles.
+• **[Matt Pocock's Skills Library](https://github.com/mattpocock/skills)**: The foundation for conversational ideation and structured specification. These include the interactive architectural decision workflows ([`wayfinder`](skills/wayfinder/SKILL.md), [`grill-me`](skills/grill-me/SKILL.md), [`to-spec`](skills/to-spec/SKILL.md), [`to-questionnaire`](skills/to-questionnaire/SKILL.md)), conversational triage and curriculum learning ([`triage`](skills/triage/SKILL.md), [`learn`](skills/learn/SKILL.md)), and agent instruction standards ([`writing-for-agents`](skills/writing-for-agents/SKILL.md)).

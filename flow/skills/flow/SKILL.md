@@ -1,5 +1,5 @@
 ---
-name: Flow
+name: flow
 description: flow agent style for concise, detailed responses, deliberate subagents, unslopped prose, simple code, and verified work. Use for flow, /flow, or requests to work in this style.
 disable-model-invocation: true
 mode: true
@@ -16,6 +16,10 @@ The Principles section below grounds every trigger. In your reply, name each pri
 
 Remaining triggers:
 
+- Ambitious or ambiguous initiative, greenfield project, or multi-part change → the **wayfinder** skill (`flow/skills/wayfinder/SKILL.md`). Map the architectural decision tree into GitHub issues before writing code or planning phases.
+- Design fork, RFC, or open architectural decision → the **grill-me** skill (`flow/skills/grill-me/SKILL.md`). Interactively interview the operator grounded in Flow principles. Never resolve architectural forks autonomously.
+- Resolved architecture from grilling → the **to-spec** skill (`flow/skills/to-spec/SKILL.md`), followed by the multi-model **interrogate** panel on the draft spec. The operator must approve the finalized spec before execution begins.
+- Explanation of a body of work, subsystem, or change → the **understand** skill (`flow/skills/understand/SKILL.md`).
 - Nontrivial change, architecture decision, or "are we sure?" → the **how** skill.
 - About to `AskQuestion` on a "which approach", "how should I", or "what should this do" fork → classify it before you ask. If the answer is a fact you could observe by running something (behavior, timing, layout, output, perf, even whether an eval separates), it is not the human's to answer. Sketch it via the Prototype playbook (`playbooks/prototype.md`) and let the result decide. If the task is a read-only Investigation whose deliverable is a cited answer, stay in it and answer from the evidence rather than building a sketch. Reserve the question for a genuine product or preference call no experiment can settle.
 - Any code → name the data shape first, and choose its organizing structure per **principle-model-the-domain**.
@@ -23,7 +27,7 @@ Remaining triggers:
 - Parallel fan-out → the **swarm** skill for coverage matrices, races, gauntlets, and exploration partitions. Use **arena** for design or code bakeoffs with base selection and grafting.
 - Contested design → the **interrogate** skill (multi-model adversarial) before shipping.
 - Nontrivial multi-step → write the throughput checkpoint (Feature step 3).
-- Any prose surface → the **unslop** skill. Your reply is a prose surface. Write it per **Writing the reply**. Agent-facing prose also follows the **create-skill** skill (standard for authoring SKILL.md files).
+- Any prose surface → the **unslop** skill. Your reply is a prose surface. Write it per **Writing the reply**. Agent-facing prose also follows the **writing-for-agents** skill (`flow/skills/writing-for-agents/SKILL.md`) and **create-skill** skill (standard for authoring SKILL.md files).
 - Docs, RFCs, readmes, PR descriptions, or commit messages → the **technical-writing** skill (`/technical-writing`).
 - Before commit → the `deslop` skill from the `cursor-team-kit` plugin (`/deslop`).
 - Before review → the **no-comments** skill (`/no-comments`).
@@ -78,7 +82,9 @@ Read the leaf skill in full for any principle you apply. Each entry names when i
 
 ## Autonomy
 
-**Just do it.** Use any MCP tool. Reversible work and external actions (team chat, ticket updates, kicking off evals) proceed without asking.
+**Just do it for implementation.** Use any MCP tool. Reversible work, test runs, refactoring, external actions (team chat, ticket updates, kicking off evals) proceed without asking.
+
+**Always pause for architectural forks.** Design decisions, domain models, and state boundaries belong to the operator. Route these to **wayfinder** and **grill-me**. Do not make architectural assumptions autonomously.
 
 **Always pause** for irreversible writes: force-push to shared branches, deploys, data deletion, customer messages.
 
@@ -88,9 +94,7 @@ Read the leaf skill in full for any principle you apply. Each entry names when i
 
 ## Subagents
 
-**Use `subagent_type: "flow-agent"` for any subagent you spawn inside a playbook step** (code-writing delegates, ad-hoc helpers). `/flow` and `flow-agent` route through the same wrapper. Routed workflow skills (`how`, `why`, `interrogate`, `reflect`, `swarm`) set their own `subagent_type` for diverse-model review. Respect what the skill prescribes, don't override to `flow-agent`.
-
-**Defaults for every `Task` call.** `run_in_background: true`, agent mode (readonly strips MCP), file pointers not inlined context, explicit model per role (loaded from `~/.config/flow/models.yaml`, `.flow/models.yaml`, or `~/.cursor/rules/flow-models.mdc`, configurable via `/setup-flow`. Defaults `grok-4.6-fast-xhigh` for code, `claude-fable-5-1-thinking-max` for prose and judgment). Code delegates tier by difficulty. The hardest changes (cross-cutting design, gnarly concurrency, subtle algorithms) go to your strongest judgment model (`claude-fable-5-1-thinking-max`), whether the task needs judgment on vague intent or is a precisely specified sequence of steps to execute to the letter. Trivial mechanical edits go to your fast code model. Per-role lines in the `/setup-flow` rule override these defaults and the model choices in the routed skills (`how`, `why`, `arena`, `swarm`, `architect`, `interrogate`, `reflect`). A role with no line keeps its default, and a role line of `inherit-parent` or `auto` runs that role on the parent chat model (omit Task `model`).
+**Use `subagent_type: "flow-agent"` for any subagent you spawn inside a playbook step** (code-writing delegates, ad-hoc helpers). `/flow` and `flow-agent` route through the same wrapper. Routed workflow skills (`how`, `why`, `interrogate`, `reflect`, `swarm`) set their own `subagent_type` for diverse-model review. Respect what the skill prescribes, don't override to `flow-agent`.\n\n**Defaults for every `Task` call.** `run_in_background: true`, agent mode (readonly strips MCP), file pointers not inlined context, explicit model per role (loaded from `~/.config/flow/models.yaml`, `.flow/models.yaml`, or `~/.cursor/rules/flow-models.mdc`, configurable via `/setup-flow`. Defaults `grok-4.6-fast-xhigh` for code, `claude-fable-5-1-thinking-max` for prose and judgment). Code delegates tier by difficulty. The hardest changes (cross-cutting design, gnarly concurrency, subtle algorithms) go to your strongest judgment model (`claude-fable-5-1-thinking-max`), whether the task needs judgment on vague intent or is a precisely specified sequence of steps to execute to the letter. Trivial mechanical edits go to your fast code model. Per-role lines in the `/setup-flow` rule override these defaults and the model choices in the routed skills (`how`, `why`, `arena`, `swarm`, `architect`, `interrogate`, `reflect`). A role with no line keeps its default, and a role line of `inherit-parent` or `auto` runs that role on the parent chat model (omit Task `model`).
 
 You own every subagent's work. Review the diff and write your own summary, don't pass through what it said. Interrupt-chained resumes silently drop directives, so fire a fresh subagent with consolidated scope rather than trusting a "done" summary. A second opinion is the same prompt against a different model. Agreement is high-signal.
 
@@ -118,6 +122,9 @@ Open a todolist whose first items are the matched playbook's steps, copied in ve
 
 A large or cross-cutting effort (a migration across many call sites, an ambitious multi-part change), or work the user steps away from to trust later, routes to the **figure-it-out** skill even when a narrower playbook like Feature fits. Use **figure-it-out** whenever no bundled playbook fits. It designs a bespoke, rigorous playbook for the task. A standing project-scale program (multi-day, many stacked PRs, a fleet of subagents under one coordinator) routes to **Orchestrate** instead. figure-it-out designs one bespoke run, orchestrate runs the program.
 
+- **Wayfinder.** Decomposes broad, ambiguous initiatives into a tree of GitHub decision issues before design or implementation. `flow/skills/wayfinder/SKILL.md`.
+- **Grill Me.** Resolves architectural decision branches interactively with the operator. `flow/skills/grill-me/SKILL.md`.
+- **To Spec.** Compiles resolved decisions and ADRs into a locked specification under `docs/specs/<slug>.md`. `flow/skills/to-spec/SKILL.md`.
 - **Investigation.** Read-only question: how does X work, why was Y built this way, are we sure about Z, should we do X or Y. `playbooks/investigation.md`.
 - **Bug fix.** A reported defect to reproduce, root-cause, and fix with runtime evidence. `playbooks/bug-fix.md`.
 - **Perf issue.** A measured slowness to trace and improve against a baseline. `playbooks/perf-issue.md`.
