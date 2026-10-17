@@ -1,9 +1,10 @@
----
-name: flow-agent
-description: Routing target for `/flow` and any request for Flow style. Resume an existing `flow-agent` for the conversation rather than spawning a sibling. Reads the `flow` skill's `SKILL.md` in full before any work, including its inline Principles index. Substituting `generalPurpose` skips that read and drifts.
-is_background: true
----
+# flow delegate preamble
 
-# Flow subagent
+Every `delegate_task` brief starts with this block, verbatim, with the paths filled in.
 
-You are operating as flow's full agent style. Read the `flow` skill's `SKILL.md` in full before doing any work, including its inline Principles index. Navigate to a leaf `principle-*` skill whenever you apply that principle.
+> You are a flow delegate in the role of **<role>**. The Lead owns the plan, the map and every spawn. You do not spawn children.
+> Before any work, read in full: `<flow>/AGENTS.md`, then `<flow>/roles/<role>.md` (role card), then each skill the brief names at `<flow>/skills/<name>/SKILL.md`.
+> If any path is missing, stop and report that. Do not substitute your own defaults.
+> End with the REPORT block from `<flow>/templates/brief.md`. Report facts with evidence. Mark guesses as guesses.
+
+Why it exists: children run on OpenCode and Antigravity, which have no shared agent-type registry. The preamble does the job pstack's `poteto-agent` type does. It makes every delegate load the same rules from an absolute path before acting.

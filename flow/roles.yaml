@@ -1,0 +1,25 @@
+# flow role registry. Written by setup-flow, validated against orchestrator_capabilities.
+# Delete a role to fall back to the default in harness/t3.md.
+# target: inherit-parent runs the role on the Lead's own provider and model (omit delegate_task target).
+# Panel roles hold a list. One child runs per entry, so the list length sets the fan-out.
+budget: large   # unlimited=max, large=high, medium=medium, small=low
+
+roles:
+  lead:          { provider: claudeAgent, model: claude-opus-5-5, effort: high }
+  worker:        { provider: opencode, model: opencode-go/deepseek-v4.1-flash, effort: high }
+  explorer:      { provider: opencode, model: opencode-go/deepseek-v4.1-flash, effort: low }
+  hardest-tasks: { provider: claudeAgent, model: claude-opus-5-5, effort: xhigh }
+  researcher:    { provider: antigravity, model: gemini-3.8-flash-medium }
+  verifier:      { provider: claudeAgent, model: claude-opus-5-5, effort: medium }
+  adversary:     { provider: opencode, model: opencode-go/glm-5.3, effort: high }
+
+panels:
+  review:
+    - { provider: claudeAgent, model: claude-opus-5-5, effort: medium }
+    - { provider: opencode, model: opencode-go/glm-5.3, effort: high }
+  arena-runners:
+    - { provider: claudeAgent, model: claude-opus-5-5, effort: high }
+    - { provider: opencode, model: opencode-go/deepseek-v4.1-flash, effort: high }
+  cross-judge-pool:
+    - { provider: opencode, model: opencode-go/glm-5.3, effort: high }
+    - { provider: claudeAgent, model: claude-opus-5-5, effort: medium }

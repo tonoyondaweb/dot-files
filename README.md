@@ -1,40 +1,28 @@
-# Personal Development Environment & Agentic Harness
+# dot-files
 
-This repository contains my personal configurations, developer tooling, autonomous agent harness definitions, atomic skill libraries, and knowledge management systems. It serves as the unified source of truth for bootstrapping, configuring, and orchestrating my development environments across machines.
+Personal configuration. The main thing here is **flow**, the agent workflow I run through T3 Code.
 
----
+## flow
 
-## Repository Structure
+Plain files, no installer. Point any agent at them however it loads instructions and skills.
 
 ```
-dot-files/
-├── llm-wiki/               # LLM Wiki methodology, templates & deterministic DAG engine
-│   ├── scripts/            # dag.py, sync-workspace.sh
-│   ├── templates/          # Schema.org YAML frontmatter templates
-│   └── specs/              # System architecture specification
-├── docs/specs/             # Core specifications & harness definitions
-│   ├── agent-definitions.md# 6-agent role architecture (Ideation, Architect, Worker, etc.)
-│   └── skill-library.md    # Reusable atomic skills ledger and principles
-└── ...                     # Shell, editor, and system configurations
+flow/
+├── AGENTS.md            # operating rules: tracks, stages, gates, delegation
+├── roles.yaml           # role → provider/model/effort registry (regenerate with setup-flow)
+├── roles/*.md           # one card per role: job, never, done-when
+├── agents/flow-agent.md # preamble every delegate brief starts with
+├── harness/t3.md        # flow terms → T3 primitives (delegate_task, worktrees, PR watch)
+├── templates/brief.md   # brief template and per-role REPORT schemas
+├── skills/              # vendored skills (see skills/README.md) + setup-flow
+└── licenses/            # upstream licenses for vendored skills
 ```
 
----
+### How this machine loads it
 
-## Key Components
-
-### 1. LLM Wiki & Workspace Framework (`llm-wiki/`)
-A modular system implementing Andrej Karpathy's LLM Wiki methodology combined with Google's Open Knowledge format (Schema.org / JSON-LD in YAML frontmatter) and Obsidian. 
-- **Separation of Concerns:** Project specifications, PRDs, ADRs, and tickets live exclusively in the knowledge vault; code repositories contain only source code and tests.
-- **Deterministic DAG Engine (`dag.py`):** Evaluates dependency graphs and task readiness deterministically without fuzzy markdown parsing.
-- **Context Synchronization (`sync-workspace.sh`):** Automatically links code repositories to vault project contexts via gitignored symlinks.
-
-### 2. Agent Harness & Role Definitions (`docs/specs/agent-definitions.md`)
-Defines the specialized agent roles that form our execution harness:
-- **Ideation Agent:** Functional requirement extraction and milestone roadmapping.
-- **Primary Architect & Sub-Agents:** Milestone architecture design, seam definitions, and DAG ticket compilation.
-- **Worker Agent:** Autonomous parallel execution using a strict TDD loop (`test -> build -> test -> fix`).
-- **Advisor Agent:** Over-the-shoulder monitor preventing architectural drift.
-- **Review Agent (Critic):** Adversarial gatekeeper reviewing completed PRs against architectural specs.
-
-### 3. Core Skill Library (`docs/specs/skill-library.md`)
-Ledger of atomic skills and global behavioral principles (e.g., `principle-guard-the-context-window`, `principle-never-block-on-the-human`, `principle-sequence-verifiable-units`).
+| Agent | Wiring |
+| --- | --- |
+| Claude Code (the T3 Lead, Claude children) | `~/.claude/CLAUDE.md` contains `@~/workspace/code/dot-files/flow/AGENTS.md`. Each `flow/skills/*` is symlinked into `~/.claude/skills/`. A global `~/.claude/AGENTS.md` is **not** read (tested on Claude Code 2.1.301). |
+| OpenCode, Antigravity children | Nothing global. Every brief opens with `agents/flow-agent.md`, which makes the child read `AGENTS.md`, its role card, and named skills by absolute path. |
+| Open Code Review | `npm install -g @alibaba-group/open-code-review`. Used in delegation mode (`ocr delegate`), so no OCR model key. |
+| Learning notes | `~/learn`, a local git repo with no remote. |
