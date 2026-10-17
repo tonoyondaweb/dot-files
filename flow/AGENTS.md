@@ -2,7 +2,7 @@
 
 flow is how work runs on this machine. T3 Code is the orchestration surface. One Lead thread reasons and orchestrates; children do the grunt work on cheaper models.
 
-`<flow>` below means the folder holding this file. On this machine that is `~/dot-files/flow`.
+`<flow>` below means the folder holding this file. On this machine that is `~/workspace/code/dot-files/flow`.
 
 ## Everyone
 
