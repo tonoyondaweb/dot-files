@@ -1,6 +1,6 @@
 ---
-name: flow-mode
-description: Enter flow for this session. Loads the flow rules, finds or charts the wayfinder map, and routes the request to Shape, Build, or Learn. Use for /flow-mode or "start flow".
+name: flow
+description: Enter flow for this session. Loads the flow rules, finds or charts the wayfinder map, and routes the request to Shape, Build, or Learn. Use for /flow or "start flow".
 disable-model-invocation: true
 ---
 
