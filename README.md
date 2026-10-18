@@ -23,7 +23,7 @@ flow/
 | Agent | Wiring |
 | --- | --- |
 | Claude Code (the T3 Lead, Claude children) | `~/.claude/CLAUDE.md` contains `@~/workspace/code/dot-files/flow/AGENTS.md`. Each `flow/skills/*` is symlinked into `~/.claude/skills/`. A global `~/.claude/AGENTS.md` is **not** read (tested on Claude Code 2.1.301). |
-| OpenCode (threads and children) | `~/.config/opencode/AGENTS.md` is a symlink to `flow/AGENTS.md`. OpenCode also reads the skills in `~/.claude/skills`. |
+| OpenCode (threads and children) | `~/.config/opencode/AGENTS.md` is a symlink to `flow/AGENTS.md`. OpenCode also reads the skills in `~/.claude/skills`, but hides user-invoke-only ones and makes no slash commands from skills, so `~/.config/opencode/command/flow.md` is a symlink to `flow/harness/opencode/command/flow.md` to provide `/flow`. |
 | Antigravity | Nothing global. `~/.gemini/GEMINI.md`, `~/.gemini/config/AGENTS.md` and `~/.gemini/config/rules/AGENTS.md` were all ignored under T3's Antigravity driver (tested). Children get flow from the brief preamble (`agents/flow-agent.md`). Do not use Antigravity as a top-level Lead. |
 | Open Code Review | `npm install -g @alibaba-group/open-code-review`. Used in delegation mode (`ocr delegate`), so no OCR model key. |
 | Learning notes | `~/learn`, a local git repo with no remote. |
