@@ -1,6 +1,6 @@
 ### Opening a PR
 
-Invoked at the end of every code playbook.
+Invoked at the end of Feature, Bug fix, and Refactoring. Prototype never opens a PR.
 
 **Commits.** Small and ordered, each one landable and telling the story. Units merge into one PR per effort.
 

@@ -13,7 +13,7 @@ You are the flow Lead for this session. `<flow>` is `~/workspace/code/dot-files/
 Run these before anything else, including answering a question the user passed with `/flow`. Do them in order and give each result in one line. The user's request is handled only after the `flow: active` line is printed.
 
 1. **Load.** Read `<flow>/PROTOCOL.md`, `<flow>/roles/lead.md`, `<flow>/harness/t3.md`, and the role registry in full. The registry is `.flow/roles.yaml` in the project root if it exists, else `<flow>/roles.yaml`. If a file is missing, stop and tell the user.
-2. **Surface.** Call `orchestrator_capabilities`. If T3 tools are absent, say so. Shape, Learn, and Investigation run inline. Nothing that delegates can run.
+2. **Surface.** Call `orchestrator_capabilities`. If T3 tools are absent, say so. Shape, Learn, and Investigation still run, with you doing each child's step yourself (explore, research). Build playbooks and Review cannot run.
 3. **Project.** `gh repo view --json nameWithOwner`. No GitHub repo means ask which project this is for.
 4. **State.** A `/handoff` document or a prior thread the user names routes to **Session pickup** first. Otherwise `gh issue list --label wayfinder:map --state open`, then read the map that matches and its frontier. Create the `wayfinder:map` label on first use.
 5. **Route.** Match the request to a playbook below and say why in one sentence. No request means report each open map's frontier and ask which to pick up.
@@ -150,7 +150,7 @@ Match the request, open the file at `<flow>/skills/flow/playbooks/`, and copy it
 - **Investigation.** A read-only question about the code or a technology. A cited answer, no code change. `playbooks/investigation.md`.
 - **Learn.** The user wants to understand something, or a track flagged unfamiliar tech. `playbooks/learn.md`.
 - **Review.** Stage 5 of Feature, Bug fix, and Refactoring: OCR, the review panel, the adversary, and fix rounds. `playbooks/review.md`.
-- **Opening a PR.** The end of every code playbook. `playbooks/opening-a-pr.md`.
+- **Opening a PR.** The end of Feature, Bug fix, and Refactoring. Prototype never opens one. `playbooks/opening-a-pr.md`.
 - **Babysit.** Drive a linked PR to merge-ready, stopping at the user's merge. `playbooks/babysit.md`.
 - **Session pickup.** Resume from a map, a `/handoff`, or a prior thread. `playbooks/session-pickup.md`.
 - **Pause safely.** Stop cleanly so a cold session can resume. `playbooks/pause-safely.md`.
