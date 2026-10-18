@@ -6,6 +6,6 @@
 2. Take no irreversible action to pause.
 3. Make the work durable. Each worktree with uncommitted edits gets one `wip:` commit on its branch.
 4. Update the map. Close finished tickets and note the in-flight one with its branch.
-5. `Read` `<flow>/skills/handoff/SKILL.md` and write the handoff, pointing at the map rather than restating it.
+5. `Read` `<flow>/skills/handoff/SKILL.md` and write the handoff, pointing at the map rather than restating it. Post it as a comment on the map issue.
 
-**Reply:** where the work stands, the commits made, the handoff path, and the first action on resume.
+**Reply:** where the work stands, the commits made, the handoff comment link, and the first action on resume.
