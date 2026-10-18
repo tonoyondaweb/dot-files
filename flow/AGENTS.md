@@ -24,5 +24,5 @@ The Lead's whole operating system is `<flow>/skills/flow/SKILL.md`: start-up, th
 - `skills/principle-*/SKILL.md` are short principles the router and playbooks cite. They are read by path, not linked as skills.
 - `skills/<name>/SKILL.md` are the workflow skills (wayfinder, grilling, domain-modeling, research, prototype, to-spec, to-tickets, teach, handoff, creative-ideation, setup-matt-pocock-skills, setup-flow).
 - `roles.yaml` maps roles to models. A project's `.flow/roles.yaml` overrides it.
-- `roles/*.md` are role cards. `agents/flow-agent.md` is the delegate preamble. `templates/brief.md` is the brief and REPORT schema. `harness/t3.md` maps flow to T3 tools.
+- `roles/*.md` are role cards, one per role including `reviewer` and `judge`. `agents/flow-agent.md` is the delegate preamble. `templates/brief.md` is the brief and REPORT schema. `harness/t3.md` maps flow to T3 tools.
 - `AUTHORING.md` is the guide for editing flow itself.

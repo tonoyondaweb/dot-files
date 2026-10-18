@@ -10,7 +10,7 @@
    - **Smallest safe decomposition.** If one worker is best, name why.
    Write one brief per unit from `<flow>/templates/brief.md`, each unit ending in a check (**principle-sequence-verifiable-units**). Commit the sketch (types, seams, stubs) to `feat/<slug>` before spawning anyone.
 3. **Build.** Spawn one worker per unit with `delegate_task`, `isolation: "worktree"`, `mode: "async"`, in one turn where units share no files. Cross-cutting or subtle units go to `hardest-tasks`. A unit that fails twice gets replanned by you (**principle-attack-the-premise**). The user hears only when the replan needs a product decision.
-4. **Verify.** Spawn the verifier unless all three hold: VERIFY is a fixed command covering every ACCEPTANCE line, the blast radius is local only, and nothing a consumer touches behaves differently. When skipped, re-run VERIFY yourself and record `lead-verified`. A new head SHA voids any verdict. CI green is an input, not a verdict (**principle-prove-it-works**). UI changes are proven on the real surface with `preview_*` or `device_*`.
+4. **Verify.** Spawn the verifier (`isolation: "worktree"` at the head SHA) unless all three hold: VERIFY is a fixed command covering every ACCEPTANCE line, the blast radius is local only, and nothing a consumer touches behaves differently. When skipped, re-run VERIFY yourself and record `lead-verified`. A new head SHA voids any verdict. CI green is an input, not a verdict (**principle-prove-it-works**). UI changes are proven on the real surface with `preview_*` or `device_*`: by the verifier if its harness exposes them, otherwise by you.
 5. **Review.** Run **Review** (`playbooks/review.md`).
 6. **Merge.** Merge the unit branches into one PR and run **Opening a PR** (`playbooks/opening-a-pr.md`).
 

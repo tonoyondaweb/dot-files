@@ -44,6 +44,8 @@ Skills marked user-invoke-only (`wayfinder`, `to-spec`, `to-tickets`, `teach`, `
 | Unfamiliar tech in Shape or Align | **Learn** playbook |
 | Any code | Name the data shape first, structured per **principle-model-the-domain** |
 | Context getting full | `handoff`, pointing at the map |
+| Registry missing, or a target rejected twice | `setup-flow` |
+| `wayfinder` `task` ticket | A worker does it if it can, otherwise a checklist for the user (Shape step 3) |
 | PR status, "check on PR X", "get it green" | **Babysit** playbook |
 | Any PR | **Opening a PR** playbook |
 | Before asking the user a "which approach" question | If running something could answer it, it is not the user's question. Sketch it per **Prototype**. Ask only for product or preference calls. |

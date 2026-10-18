@@ -3,7 +3,7 @@
 The Lead fills one per child. Open with the preamble from `<flow>/agents/flow-agent.md`.
 
 ```
-ROLE: <worker | hardest-tasks | explorer | researcher | verifier | adversary>
+ROLE: <worker | hardest-tasks | explorer | researcher | verifier | adversary | reviewer | judge>
 MAP: <wayfinder map issue URL>        TICKET: <issue URL>
 BRANCH: <branch to check out / commit to>   BASE SHA: <sha>
 SKILLS: <skill names to read, or none>
@@ -71,5 +71,24 @@ GUESSES:
 STATUS:
 FINDINGS: <severity: high | medium | low> <path:line> — <failure scenario: input/state → wrong result>
 CHECKED: <angles attacked that held up>
+GUESSES:
+```
+
+**reviewer**
+```
+STATUS:
+AXIS: <standards | correctness and design>
+HEAD SHA: <sha reviewed>
+FINDINGS: <severity: high | medium | low> <path:line> — <failure: input/state → wrong result> — <rule or principle>
+GIT STATUS: <must be empty>
+GUESSES:
+```
+
+**judge**
+```
+STATUS:
+SCORES: <candidate label> — <criterion>: <score> <one-line reason>, one per line
+RECOMMEND: <label> — <why>
+WOULD CHANGE MY MIND: <evidence that would flip it>
 GUESSES:
 ```
