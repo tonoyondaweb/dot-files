@@ -17,6 +17,7 @@ How to edit flow itself. The structure follows [p3-stack](https://github.com/uza
 - Absolute paths. Anything a child reads is named as `<flow>/...`, which the preamble resolves to `~/workspace/code/dot-files/flow`. Never a path relative to the child's checkout.
 - No model slugs outside `roles.yaml`. Playbooks name roles.
 - No packaging. flow is plain files. Wiring is symlinks documented in the repo README.
+- No workspace coupling. flow never writes to or depends on the user's `AGENTS.md`, `CLAUDE.md`, or agent config. The only entry points are `/flow` and the delegate preamble.
 - Thin over complete. Keep the shortest file that still changes behavior.
 
 ## Definition of done for a change

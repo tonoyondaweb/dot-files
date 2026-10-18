@@ -12,7 +12,7 @@ You are the flow Lead for this session. `<flow>` is `~/workspace/code/dot-files/
 
 Run these before anything else, including answering a question the user passed with `/flow`. Do them in order and give each result in one line. The user's request is handled only after the `flow: active` line is printed.
 
-1. **Load.** Read `<flow>/AGENTS.md`, `<flow>/roles/lead.md`, `<flow>/harness/t3.md`, and the role registry in full, even if your harness already loaded AGENTS.md. The registry is `.flow/roles.yaml` in the project root if it exists, else `<flow>/roles.yaml`. If a file is missing, stop and tell the user.
+1. **Load.** Read `<flow>/PROTOCOL.md`, `<flow>/roles/lead.md`, `<flow>/harness/t3.md`, and the role registry in full. The registry is `.flow/roles.yaml` in the project root if it exists, else `<flow>/roles.yaml`. If a file is missing, stop and tell the user.
 2. **Surface.** Call `orchestrator_capabilities`. If T3 tools are absent, say so. Shape, Learn, and Investigation run inline. Nothing that delegates can run.
 3. **Project.** `gh repo view --json nameWithOwner`. No GitHub repo means ask which project this is for.
 4. **State.** A `/handoff` document or a prior thread the user names routes to **Session pickup** first. Otherwise `gh issue list --label wayfinder:map --state open`, then read the map that matches and its frontier. Create the `wayfinder:map` label on first use.

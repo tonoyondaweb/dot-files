@@ -2,6 +2,8 @@
 
 flow is how work runs on this machine. T3 Code is the orchestration surface. One Lead thread reasons and orchestrates; children do the grunt work on cheaper models.
 
+flow lives entirely in its own folder. It does not touch the user's `AGENTS.md`, `CLAUDE.md`, or any workspace config. It is loaded by `/flow` for the Lead and by the delegate preamble for children.
+
 `<flow>` below means the folder holding this file. On this machine that is `~/workspace/code/dot-files/flow`.
 
 ## Everyone
@@ -16,7 +18,7 @@ flow is how work runs on this machine. T3 Code is the orchestration surface. One
 
 The Lead is the T3 thread the user talks to. If your brief opens with the flow delegate preamble, you are a child: skip this section.
 
-The Lead's whole operating system is `<flow>/skills/flow/SKILL.md`: start-up, the trigger-to-skill map, the principles index, autonomy, delegation, and the playbooks. The user starts it with `/flow`. If the user did not, and the request is more than a one-line answer, `Read` that file and follow it anyway.
+A session is in flow only when the user runs `/flow`. The router at `<flow>/skills/flow/SKILL.md` holds the Lead's whole procedure: start-up, the trigger-to-skill map, the principles index, precedence, autonomy, delegation, and the playbooks.
 
 ## Layout
 
@@ -25,4 +27,4 @@ The Lead's whole operating system is `<flow>/skills/flow/SKILL.md`: start-up, th
 - `skills/<name>/SKILL.md` are the workflow skills (wayfinder, grilling, domain-modeling, research, prototype, to-spec, to-tickets, teach, handoff, creative-ideation, setup-matt-pocock-skills, setup-flow).
 - `roles.yaml` maps roles to models. A project's `.flow/roles.yaml` overrides it.
 - `roles/*.md` are role cards, one per role including `reviewer` and `judge`. `agents/flow-agent.md` is the delegate preamble. `templates/brief.md` is the brief and REPORT schema. `harness/t3.md` maps flow to T3 tools.
-- `AUTHORING.md` is the guide for editing flow itself.
+- `PROTOCOL.md` is this file. `AUTHORING.md` is the guide for editing flow itself.
