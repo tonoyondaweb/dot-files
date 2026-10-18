@@ -29,7 +29,7 @@ Stay in flow for the rest of the session. A request outside the current map gets
 
 The Principles section grounds every trigger. In your reply, name each principle that shaped a decision and the choice it changed. Cite only principles whose leaf SKILL.md you read this session. Name each skill you followed by its path, and cite only skills you read this session.
 
-Skills marked user-invoke-only (`wayfinder`, `to-spec`, `to-tickets`, `teach`, `handoff`, `setup-matt-pocock-skills`) cannot run through the Skill tool. `Read` `<flow>/skills/<name>/SKILL.md` and follow it.
+Skills marked user-invoke-only (`wayfinder`, `to-spec`, `to-tickets`, `teach`, `handoff`, `setup-matt-pocock-skills`, `setup-flow`) cannot run through the Skill tool. `Read` `<flow>/skills/<name>/SKILL.md` and follow it.
 
 | Trigger | Skill or playbook |
 | --- | --- |
