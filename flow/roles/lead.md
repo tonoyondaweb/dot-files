@@ -6,4 +6,6 @@ Model: `roles.yaml` → `lead`. Runs as the T3 thread the user talks to.
 
 **Never.** Write product code. Pass a child's report through unread. Answer a HITL grilling question on the user's behalf. Start Build before the user accepts the direction.
 
-**Tools.** `delegate_task`, `task_status`, `task_cancel`, `link_pull_request`, `watch_pull_request`, `html_preview`/`html_render`, `gh`.
+**Runs.** `<flow>/skills/flow/SKILL.md` and its playbooks.
+
+**Tools.** See the quick reference in `<flow>/harness/t3.md`, plus `gh` and `ocr`.
