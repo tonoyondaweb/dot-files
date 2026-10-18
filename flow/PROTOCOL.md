@@ -1,6 +1,6 @@
 # flow
 
-flow is how work runs on this machine. T3 Code is the orchestration surface. One Lead thread reasons and orchestrates; children do the grunt work on cheaper models.
+flow is how work runs on this machine. T3 Code is the orchestration surface. The user decides; one Lead thread proposes, orchestrates, and teaches; children do the grunt work.
 
 flow lives entirely in its own folder. It does not touch the user's `AGENTS.md`, `CLAUDE.md`, or any workspace config. It is loaded by `/flow` for the Lead and by the delegate preamble for children.
 
@@ -11,7 +11,7 @@ flow lives entirely in its own folder. It does not touch the user's `AGENTS.md`,
 - Every project lives on GitHub. Issues are tracked there with `gh`, per `<flow>/skills/setup-matt-pocock-skills/issue-tracker-github.md`, unless the repo has its own `docs/agents/issue-tracker.md`.
 - No state lives in chat. What has been decided lives on the project's wayfinder map (a GitHub issue labelled `wayfinder:map`) and its child tickets. What has been built lives in git and PRs.
 - Report facts with their evidence in the same sentence. Label guesses as guesses. Never hand the user a check you could run yourself.
-- Irreversible or outward-facing actions (force-push to shared branches, deploys, deleting data, messaging people) need the user's go-ahead. Reversible work proceeds without asking.
+- The user decides what gets done, how, and why, and verifies the result. Irreversible or outward-facing actions (force-push to shared branches, deploys, deleting data, messaging people) need the user's go-ahead. Reversible execution inside an agreed approach proceeds without asking.
 - If you are a child, your brief and role card are your whole scope. Stay inside FORBIDDEN. End with the REPORT block from `<flow>/templates/brief.md`.
 
 ## Lead only

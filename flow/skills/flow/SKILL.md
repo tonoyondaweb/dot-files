@@ -37,15 +37,16 @@ Skills marked user-invoke-only (`wayfinder`, `to-spec`, `to-tickets`, `teach`, `
 | A fact blocks a decision | `research` on the researcher role |
 | "How would it behave", or an empirical fork you could observe | **Prototype** playbook, never a question to the user |
 | Map cleared | `to-spec`, then `to-tickets` |
-| Unfamiliar tech in Shape or Align | **Learn** playbook |
-| Any code | Name the data shape first, structured per **principle-model-the-domain** |
+| Unfamiliar tech in Shape or Map | **Learn** playbook |
+| Any code | Name the data shape first, structured per **principle-model-the-domain**, and put it to the user at the How gate |
 | Context getting full | `handoff`, pointing at the map |
 | Registry missing, or a target rejected twice | `setup-flow` (user-invoke-only: `Read` its SKILL.md) |
 | `wayfinder` `task` ticket | A worker does it if it can, otherwise a checklist for the user (Shape step 3) |
 | PR status, "check on PR X", "get it green" | **Babysit** playbook |
 | Any PR | **Opening a PR** playbook |
 | Docs-only change, no behavior change | One ticket on the map, a worker, then **Review** with the standards axis only, then **Opening a PR** |
-| Before asking the user a "which approach" question | If running something could answer it, it is not the user's question. Sketch it per **Prototype**. Ask only for product or preference calls. |
+| Before putting a "which approach" decision to the user | Gather evidence first. If running something could inform it, sketch it per **Prototype**. Then present the options with the evidence. The user decides. |
+| The user cannot yet weigh a decision (says so, or the options turn on tech they have not learned) | **Learn**, scoped to that decision, before the gate |
 
 ## Principles
 
@@ -74,7 +75,7 @@ Read the leaf skill at `<flow>/skills/principle-<name>/SKILL.md` in full for any
 
 - **Prove It Works** (`principle-prove-it-works`). Before declaring done. Check the real artifact, not a proxy or a self-report.
 - **Fix Root Causes** (`principle-fix-root-causes`). Debugging. Reproduce first, ask why until you reach the cause.
-- **Sequence Verifiable Units** (`principle-sequence-verifiable-units`). Contract stage and commit order. Small units that each end in a check.
+- **Sequence Verifiable Units** (`principle-sequence-verifiable-units`). How stage and commit order. Small units that each end in a check.
 - **Test Behavior, Not Implementation** (`principle-test-behavior-not-implementation`). Writing or keeping a test. Assert results the way users call the code.
 
 **Delegation**
@@ -86,11 +87,25 @@ Read the leaf skill at `<flow>/skills/principle-<name>/SKILL.md` in full for any
 
 - **Encode Lessons in Structure** (`principle-encode-lessons-in-structure`). You write the same instruction a second time. Make it a lint, check, script, or skill edit.
 
+## Alignment
+
+The user decides what gets done, how, and why. Skills, principles, and playbooks ground every proposal; they never replace the user's decision. You propose, the user decides, children execute, and the user verifies.
+
+Every playbook that changes code passes three gates. Each gate is recorded on the map ticket with the user's words.
+
+1. **What.** Write the intent record: goal and for whom, **done means** (observable results the user could check, each one an ACCEPTANCE line later), out of scope, and why. The user confirms or edits it. No work starts before.
+2. **How.** Present the approach: the data shape, the decomposition, and two or three options where they exist, each with its tradeoffs, the principles that bear on it, and the evidence (explorer pointers, research, prototypes). Recommend one. The user picks. No worker spawns before.
+3. **Accept.** Show each done-means line next to its evidence: verifier output, screenshots, test output, the diff that delivers it. The user confirms the intent was translated into the work. No PR opens before.
+
+**Learning backs every gate.** When a decision turns on something the user has not learned, run **Learn** scoped to that decision first, so the user decides from understanding, not trust. Teach how the thing is being built, not only what it is.
+
+**Inside an agreed How, execution does not block.** Retries, fix rounds, unit ordering, and the mechanics of a brief proceed without asking. Anything that would change the agreed What or How (a replan, a new unit, a dropped requirement, a different data shape) stops and goes back to its gate.
+
 ## Precedence
 
 When two sources disagree: the user's gates, then this file and its playbooks, then the skill, then the principle. Known overlaps are settled here.
 
-- **Never Block on the Human vs `grilling`, `wayfinder` HITL tickets, `to-tickets` quiz.** The principle covers execution. Decisions on HITL tickets and the Shape gate belong to the user, so wait for them. Facts are never the user's to supply.
+- **Never Block on the Human vs Alignment.** In flow the principle covers only execution inside an agreed What and How. What, How, Accept, HITL tickets, and the Shape gate belong to the user, so wait for them. Facts are never the user's to supply: settle them by evidence before a gate.
 - **`research` writes a file and spins up its own agent.** You spawn the researcher. The researcher does `research` steps 1 to 3 only and never spawns. It writes only where the brief says: a `research/<name>` branch, pushed with no PR and pointed to from the ticket, for a `wayfinder` research ticket (`isolation: "worktree"`); `~/learn/<topic>/sources.md` for Learn (`isolation: "shared"`); or its REPORT alone for Investigation (`isolation: "shared"`).
 - **`wayfinder` says resolve one ticket per session, research tickets excepted.** Honor it. Shape spans sessions. Each session resolves one ticket, then hands off through `handoff` or continues only if the user says so.
 - **`wayfinder` allows only `wayfinder:` labels on a map's children.** That covers decision tickets. Build issues that `to-spec` and `to-tickets` create under the map carry `ready-for-agent` as those skills say.
@@ -103,11 +118,11 @@ When two sources disagree: the user's gates, then this file and its playbooks, t
 
 ## Autonomy
 
-**Just do it.** Reversible work proceeds without asking.
+**Decisions go to the user, execution does not.** The three gates in Alignment are the user's. Reversible execution inside an agreed How proceeds without asking.
 
 **Always pause** for irreversible or outward-facing actions: force-push to shared branches, deploys, deleting data, messaging people, merging a PR.
 
-**Gates the user owns.** HITL grilling answers. Accepting the Shape direction before Build. Merging the PR.
+**Gates the user owns.** HITL grilling answers. Accepting the Shape direction. What, How, and Accept on every code playbook. Merging the PR.
 
 **No is an acceptable answer.** Asked whether to do something, give your real judgment. Push back when it is true.
 
@@ -139,13 +154,13 @@ Every playbook ends with a reply written this way, PR link as `https://github.co
 Match the request, open the file at `<flow>/skills/flow/playbooks/`, and copy its steps into the todolist verbatim.
 
 - **Shape.** Product or business direction: what to build, for whom, why. No code, no worktrees. `playbooks/shape.md`.
-- **Feature.** New or changed behavior from an accepted spec or build issue. The six Build stages. `playbooks/feature.md`.
+- **Feature.** New or changed behavior from an accepted spec or build issue. What, Map, How, Build, Verify, Review, Accept, Merge. `playbooks/feature.md`.
 - **Bug fix.** A reported defect to reproduce, root-cause, and fix. May skip Shape. `playbooks/bug-fix.md`.
 - **Refactoring.** A behavior-preserving change to structure. `playbooks/refactoring.md`.
 - **Prototype.** A throwaway sketch to settle a design or behavior question. `playbooks/prototype.md`.
 - **Investigation.** A read-only question about the code or a technology. A cited answer, no code change. `playbooks/investigation.md`.
 - **Learn.** The user wants to understand something, or a track flagged unfamiliar tech. `playbooks/learn.md`.
-- **Review.** Stage 5 of Feature, Bug fix, and Refactoring: OCR, the review panel, the adversary, and fix rounds. `playbooks/review.md`.
+- **Review.** The step before Accept in Feature, Bug fix, and Refactoring: OCR, the review panel, the adversary, and fix rounds. `playbooks/review.md`.
 - **Opening a PR.** The end of Feature, Bug fix, and Refactoring. Prototype never opens one. `playbooks/opening-a-pr.md`.
 - **Babysit.** Drive a linked PR to merge-ready, stopping at the user's merge. `playbooks/babysit.md`.
 - **Session pickup.** Resume from a map, a `/handoff`, or a prior thread. `playbooks/session-pickup.md`.
