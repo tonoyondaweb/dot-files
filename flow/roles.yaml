@@ -1,5 +1,5 @@
 # flow role registry. Written by setup-flow, validated against orchestrator_capabilities.
-# Delete a role to fall back to the default in harness/t3.md.
+# A missing role: run setup-flow. There are no built-in defaults.
 # target: inherit-parent runs the role on the Lead's own provider and model (omit delegate_task target).
 # Panel roles hold a list. One child runs per entry, so the list length sets the fan-out.
 budget: large   # unlimited=max, large=high, medium=medium, small=low

@@ -48,6 +48,7 @@ Skills marked user-invoke-only (`wayfinder`, `to-spec`, `to-tickets`, `teach`, `
 | `wayfinder` `task` ticket | A worker does it if it can, otherwise a checklist for the user (Shape step 3) |
 | PR status, "check on PR X", "get it green" | **Babysit** playbook |
 | Any PR | **Opening a PR** playbook |
+| Docs-only change, no behavior change | One ticket on the map, a worker, then **Review** with the standards axis only, then **Opening a PR** |
 | Before asking the user a "which approach" question | If running something could answer it, it is not the user's question. Sketch it per **Prototype**. Ask only for product or preference calls. |
 
 ## Principles
@@ -94,8 +95,11 @@ Read the leaf skill at `<flow>/skills/principle-<name>/SKILL.md` in full for any
 When two sources disagree: the user's gates, then this file and its playbooks, then the skill, then the principle. Known overlaps are settled here.
 
 - **Never Block on the Human vs `grilling`, `wayfinder` HITL tickets, `to-tickets` quiz.** The principle covers execution. Decisions on HITL tickets and the Shape gate belong to the user, so wait for them. Facts are never the user's to supply.
-- **`research` writes a file and spins up its own agent.** You spawn the researcher. The researcher does `research` steps 1 to 3 only and never spawns. It writes only to the path the brief names: the repo's notes convention for Shape (`isolation: "worktree"`), or `~/learn/<topic>/sources.md` for Learn.
-- **`prototype` puts code next to the module it explores.** Follow the skill on location. The worker's worktree branch is the throwaway branch the skill asks for, and it never merges to `main`.
+- **`research` writes a file and spins up its own agent.** You spawn the researcher. The researcher does `research` steps 1 to 3 only and never spawns. It writes only where the brief says: a `research/<name>` branch, pushed with no PR and pointed to from the ticket, for a `wayfinder` research ticket (`isolation: "worktree"`); `~/learn/<topic>/sources.md` for Learn (`isolation: "shared"`); or its REPORT alone for Investigation (`isolation: "shared"`).
+- **`wayfinder` says resolve one ticket per session, research tickets excepted.** Honor it. Shape spans sessions. Each session resolves one ticket, then hands off through `handoff` or continues only if the user says so.
+- **`wayfinder` allows only `wayfinder:` labels on a map's children.** That covers decision tickets. Build issues that `to-spec` and `to-tickets` create under the map carry `ready-for-agent` as those skills say.
+- **`handoff` lists skills "to call the Skill tool for" and saves to a temp dir.** Name skills by path for the next Lead to `Read`. The temp file is a pointer. The map is the durable record.
+- **`prototype` puts code next to the module it explores.** Follow the skill on location. The worker's worktree branch is the throwaway branch the skill asks for, and it never merges to `main`. The skill's "fold the decision into the real code" means record it on the ticket. Code comes later through Feature.
 - **`teach` keeps state in the current directory.** In flow, the teaching workspace is `~/learn/<topic>/`, so its lessons and records stay local.
 - **Build the Lever says "run it yourself".** In flow a lever is code, so one worker builds and runs it. "Yourself" means one child instead of a fan-out, not the Lead writing code.
 - **`domain-modeling` vs Model the Domain.** The skill owns the language: `GLOSSARY.md` and ADRs. The principle owns code structure. Use the glossary's terms in the structure.
