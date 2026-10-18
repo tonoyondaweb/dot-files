@@ -1,6 +1,7 @@
 ---
 name: setup-flow
 description: Configure which model and effort each flow role uses. Reads the live T3 catalog and writes roles.yaml. Use for /setup-flow, "configure flow models", "flow budget", or changing a role's model.
+disable-model-invocation: true
 ---
 
 # Setup flow
