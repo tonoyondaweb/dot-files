@@ -2,16 +2,15 @@
 # A missing role: run setup-flow. There are no built-in defaults.
 # target: inherit-parent runs the role on the Lead's own provider and model (omit delegate_task target).
 # Panel roles hold a list. One child runs per entry, so the list length sets the fan-out.
-# Models: big = claude-opus-5-5, glm-5.3. Small = DeepSeek V4.1 Flash only, on the `deepseek` instance (DeepSeek Harness via dsh-t3-bridge, ~/tools, inference on OpenCode Go).
-# If deepseek is unavailable, use opencode / opencode-go/deepseek-v4.1-flash at the same effort and say so.
+# Models: big = claude-opus-5-5, glm-5.3. Small = DeepSeek V4.1 Flash on OpenCode only.
 # The researcher stays on Gemini 3.8 Flash (Antigravity).
 # Budget never lowers effort or swaps a model. It trims token-spending edges (harness/t3.md, Budget).
 budget: small   # small | medium | large | unlimited
 
 roles:
   lead:          { provider: claudeAgent, model: claude-opus-5-5, effort: high }
-  worker:        { provider: deepseek, model: deepseek-v4.1-flash, effort: high }
-  explorer:      { provider: deepseek, model: deepseek-v4.1-flash, effort: high }
+  worker:        { provider: opencode, model: opencode-go/deepseek-v4.1-flash, effort: high }
+  explorer:      { provider: opencode, model: opencode-go/deepseek-v4.1-flash, effort: high }
   hardest-tasks: { provider: claudeAgent, model: claude-opus-5-5, effort: xhigh }
   researcher:    { provider: antigravity, model: gemini-3.8-flash-medium }
   verifier:      { provider: claudeAgent, model: claude-opus-5-5, effort: high }
@@ -22,7 +21,7 @@ panels:
     - { provider: claudeAgent, model: claude-opus-5-5, effort: high }
     - { provider: opencode, model: opencode-go/glm-5.3, effort: high }
   arena-runners:
-    - { provider: deepseek, model: deepseek-v4.1-flash, effort: high }
+    - { provider: opencode, model: opencode-go/deepseek-v4.1-flash, effort: high }
     - { provider: opencode, model: opencode-go/glm-5.3, effort: high }
   cross-judge-pool:
     - { provider: opencode, model: opencode-go/glm-5.3, effort: high }
