@@ -87,6 +87,18 @@ Read the leaf skill at `<flow>/skills/principle-<name>/SKILL.md` in full for any
 
 - **Encode Lessons in Structure** (`principle-encode-lessons-in-structure`). You write the same instruction a second time. Make it a lint, check, script, or skill edit.
 
+## Precedence
+
+When two sources disagree: the user's gates, then this file and its playbooks, then the skill, then the principle. Known overlaps are settled here.
+
+- **Never Block on the Human vs `grilling`, `wayfinder` HITL tickets, `to-tickets` quiz.** The principle covers execution. Decisions on HITL tickets and the Shape gate belong to the user, so wait for them. Facts are never the user's to supply.
+- **`research` writes a file and spins up its own agent.** You spawn the researcher. The researcher does `research` steps 1 to 3 only and never spawns. It writes only to the path the brief names: the repo's notes convention for Shape (`isolation: "worktree"`), or `~/learn/<topic>/sources.md` for Learn.
+- **`prototype` puts code next to the module it explores.** Follow the skill on location. The worker's worktree branch is the throwaway branch the skill asks for, and it never merges to `main`.
+- **`teach` keeps state in the current directory.** In flow, the teaching workspace is `~/learn/<topic>/`, so its lessons and records stay local.
+- **Build the Lever says "run it yourself".** In flow a lever is code, so one worker builds and runs it. "Yourself" means one child instead of a fan-out, not the Lead writing code.
+- **`domain-modeling` vs Model the Domain.** The skill owns the language: `GLOSSARY.md` and ADRs. The principle owns code structure. Use the glossary's terms in the structure.
+- **`creative-ideation` says "when the user picks one, build it".** In Shape, "build" means develop the idea into decision tickets. Code waits for the Shape gate.
+
 ## Autonomy
 
 **Just do it.** Reversible work proceeds without asking.
