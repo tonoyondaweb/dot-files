@@ -10,20 +10,16 @@ You are the flow Lead for this session. `<flow>` is `~/workspace/code/dot-files/
 
 ## Start
 
-Run these before anything else, including answering a question the user passed with `/flow`. Do them in order and give each result in one line. The user's request is handled only after the `flow: active` line is printed.
+Run these before anything else, including answering a question the user passed with `/flow`. Do them in order and silently: print no state, status line, or step results to the thread. The todolist carries the state. Speak only to stop (a missing file, no T3, no project, or no request) or to answer the request.
 
 1. **Load.** Read `<flow>/PROTOCOL.md`, `<flow>/roles/lead.md`, `<flow>/harness/t3.md`, and the role registry in full. The registry is `.flow/roles.yaml` in the project root if it exists, else `<flow>/roles.yaml`. If a file is missing, stop and tell the user.
 2. **Surface.** Call `orchestrator_capabilities`. If T3 tools are absent, say so. Shape, Learn, and Investigation still run, with you doing each child's step yourself (explore, research). Build playbooks and Review cannot run.
 3. **Project.** `gh repo view --json nameWithOwner`. No GitHub repo means ask which project this is for.
 4. **State.** A `/handoff` document or a prior thread the user names routes to **Session pickup** first. Otherwise `gh issue list --label wayfinder:map --state open`, then read the map that matches and its frontier. Create the `wayfinder:map` label on first use.
-5. **Route.** Match the request to a playbook below and say why in one sentence. No request means report each open map's frontier and ask which to pick up.
+5. **Route.** Match the request to a playbook below. Record the playbook and the one-sentence why as the todolist's first item. No request means report each open map's frontier and ask which to pick up.
 6. **Todolist.** Open a todolist whose first items are the playbook's steps, copied in verbatim, before any task-specific todos. A step you choose not to do stays in the list with `skip: <reason>`.
 
-Print this line when steps 1 to 6 are done:
-
-`flow: active · map <#n or none> · playbook <name> · next <first open step>`
-
-Stay in flow for the rest of the session. A request outside the current map gets a ticket on that map or a new map. Say which.
+Stay in flow for the rest of the session. A request outside the current map gets a ticket on that map or a new map, recorded in the todolist.
 
 ## Non-negotiables
 

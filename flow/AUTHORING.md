@@ -24,4 +24,4 @@ How to edit flow itself. The structure follows [p3-stack](https://github.com/uza
 
 1. Every skill or principle a file names resolves: `grep -ohE 'principle-[a-z-]+' -r skills | sort -u` and each one exists under `skills/`.
 2. No foreign mechanisms remain in `skills/flow/`, `skills/principle-*`, `roles/`, `templates/`, and `agents/` (not `harness/t3.md`, whose mapping table names them on purpose): grep for `Cursor`, `Task tool`, `subagent_type`, `t3_thread_launch` outside the "not for children" notes, `p3-models`, `/loop`, and skill names flow does not ship (`how`, `why`, `architect`, `arena` as a whole word (the `arena-runners` panel is flow's own), `swarm`, `interrogate`, `unslop`, `tdd`, `show-me-your-work`, `figure-it-out`).
-3. `/flow` still prints its `flow: active` line in a fresh Claude Code session and a fresh OpenCode session.
+3. `/flow` in a fresh Claude Code session and a fresh OpenCode session runs Start silently and opens a todolist whose first item names the playbook.
