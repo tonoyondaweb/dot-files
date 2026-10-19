@@ -2,7 +2,7 @@
 
 **You propose the design. The user decides it and accepts the result.** Children implement. You write no product code.
 
-1. **What.** Read the spec and the build issue. Write the intent record and get the user's confirmation (Alignment gate 1).
+1. **What.** Read the spec and the build issue. Write the intent record and get the user's confirmation (Alignment gate 1). From a Shape ticket, derive the record from the spec and confirm it; ask only about gaps.
 2. **Map.** Map the affected code with explorers (`isolation: "shared"`): one per angle (subsystem, data flow, tests), 2 to 4 in one turn, within the in-flight cap. A simple change gets one. Read their pointers and merge them yourself. Flag unfamiliar tech in the same turn: the Learn researcher starts alongside the explorers, then **Learn** runs before the How gate, scoped to the decisions coming.
 3. **How.** Name the data shape and its structure (**principle-model-the-domain**, **principle-foundational-thinking**). Write the throughput checkpoint as four todo items, keeping any that do not apply with `n/a: <reason>`:
    - **Blocking first steps.** Gates that run before fan-out.

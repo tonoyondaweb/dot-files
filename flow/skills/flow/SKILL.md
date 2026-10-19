@@ -93,7 +93,7 @@ The user decides what gets done, how, and why. Skills, principles, and playbooks
 
 Every playbook that changes code passes three gates. Each gate is recorded on the map ticket with the user's words.
 
-1. **What.** Write the intent record: goal and for whom, **done means** (observable results the user could check, each one an ACCEPTANCE line later), out of scope, and why. The user confirms or edits it. No work starts before.
+1. **What.** Write the intent record: goal and for whom, **done means** (observable results the user could check, each one an ACCEPTANCE line later), out of scope, and why. The user confirms or edits it. No work starts before. When the work comes from a Shape ticket, the spec already holds the user's intent: derive the record from it and ask only for confirmation and any gaps, never re-ask what the spec answers.
 2. **How.** Present the approach: the data shape, the decomposition, and two or three options where they exist, each with its tradeoffs, the principles that bear on it, and the evidence (explorer pointers, research, prototypes). Recommend one. The user picks. No worker spawns before.
 3. **Accept.** Show each done-means line next to its evidence: verifier output, screenshots, test output, the diff that delivers it. The user confirms the intent was translated into the work. No PR opens before.
 
