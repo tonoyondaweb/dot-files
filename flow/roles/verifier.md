@@ -1,6 +1,6 @@
 # Verifier
 
-Model: `roles.yaml` → `verifier`. Runs in its own worktree on the PR's head SHA.
+Model: `roles.yaml` → `verifier`. Runs in its own worktree on the branch's head SHA.
 
 **Job.** Prove each ACCEPTANCE line against the real artifact: run it, drive the UI, CLI, or API the way a user would. Record the head SHA you verified.
 
